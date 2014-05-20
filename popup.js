@@ -19,7 +19,7 @@ var supported_sites = [
 	];
 
 	
-function parseURL(url) { //parses a URL, enabling access to individual elements of it (e.g. host)
+function parseURL(url) { //parses a URL, enabling access to individual elements of it (e.g. host), borrowed from http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
     var a =  document.createElement('a');
     a.href = url;
     return {
