@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+    <link href="navbar-static-top.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->	
+  </head>
+  <body>
+    <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation">	  
+        <div class="container-fluid">
+          <div class="navbar-header">            
+            <a class="navbar-brand" id="newscompare_link">NewsCompare.net</a>			                 
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+	 <!--sets the min width of popup-->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4><strong>News Search (auto-filled for supported sites):</strong></h4>
+			<input type="text" id="search_box" size="60"></input><br>
+			<br>
+			<div>
+			<h4><strong>Search these websites for a similar article:</strong></h4>
+				<button type="button" id="www.america.aljazeera.com" class="img-thumbnail"><strong><img src="aljazeera.png"></strong></button>
+				<button type="button" id="www.bbc.com" class="img-thumbnail"><strong><img src="bbc.png"></strong></button>
+				<button type="button" id="www.cnn.com" class="img-thumbnail"><strong><img src="cnn.png"></img></strong></button>
+				<button type="button" id="www.foxnews.com" class="img-thumbnail"><strong><img src="foxnews.png"></strong></button>
+				<button type="button" id="www.dailymail.co.uk" class="img-thumbnail"><strong><img src="dailymail.png"></strong></button>
+				<br>
+				<button type="button" id="www.newsmax.com" class="img-thumbnail"><strong class="text-info"><img src="newsmax.png"></strong></button>
+				<button type="button" id="www.npr.org" class="img-thumbnail"><strong><img src="npr.png"</strong></button>
+				<button type="button" id="www.nytimes.com" class="img-thumbnail"><strong><img src="nytimes.png"></strong></button>
+				<button type="button" id="www.washingtonpost.com" class="img-thumbnail"><strong><img src="washingtonpost.png"></strong></button>
+				<button type="button" id="www.theonion.com" class="img-thumbnail"><strong><img src="theonion.png"></strong></button>	
+			</div>
+		</div>
+	<div>
+		<div class="panel panel-default">
+			<div class="panel-heading">									
+			First news story: <input type="text" id="first_article" size="60"></input><br>
+			Second news story: <input type="text" id="second_article" size="60"></input>
+			</div>												
+		</div>		 
+	</div>
+		<button type="submit" id="newscompare_button" class="btn btn-primary">Submit articles to NewsCompare.net</button>				
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->    
+	<script src="jquery-1.11.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->    
+	<script src="popup.js"></script>
+  </body>
+</html>
