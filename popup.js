@@ -1,7 +1,6 @@
 var id;
 var selected_button;
 var tabUrl;
-var pos;
 var lastTabId = -1;
 var article_site;
 var supported_sites = [
@@ -45,7 +44,7 @@ function parseURL(url) { //parses a URL, enabling access to individual elements 
         relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
         segments: a.pathname.replace(/^\//,'').split('/')
     };
-}
+} 
 
 function openSearch(id) {	//opens new tab of the search page for the corresponding news site whose button is clicked, with the search words automatically inserted
 	var index = supported_sites.map(function(e) { return e.site; }).indexOf(id);	
@@ -69,14 +68,14 @@ function openSubmit(){ //opens newscompare.net's "submit" page and automatically
 
 function sendMessage(article_site) { //function determines the URL of the users current tab, sends it to content script which searches page DOM for article description 
 									 //which is then sent back, the function lastly inputs the description into the search box
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    lastTabId = tabs[0].id; //since only one active tab in current window, the array of URLs will only have 1 element
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		lastTabId = tabs[0].id; //since only one active tab in current window, the array of URLs will only have 1 element
 	
-    chrome.tabs.sendMessage(lastTabId, {salutation: "time to search", site: article_site, pos: pos}, function (responseCallback) { //
+		chrome.tabs.sendMessage(lastTabId, {salutation: "time to search"}, function (responseCallback) { //
            
-				document.getElementById('search_box').value=responseCallback.shoutback;
+			document.getElementById('search_box').value=responseCallback.shoutback;
+		});
 	});
- });
 }
 
 	
@@ -92,7 +91,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {//
 		{	
 			chrome.storage.sync.set({'storage2': tabUrl}, function() {			
 				document.getElementById('first_article').value=data['storage1'];
-				document.getElementById('second_article').value=tabUrl;
+				document.getElementById('second_article').value=tabUrl;				
 			});
 		}
 		else
@@ -100,20 +99,16 @@ chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {//
 			document.getElementById('first_article').value=data['storage1'];
 			document.getElementById('second_article').value=data['storage2'];
 		}
+		document.getElementById('first_article').readOnly = true;
+		document.getElementById('second_article').readOnly = true;
     });
 
 	var parsed_result = parseURL(tabUrl);
-	pos = supported_sites.map(function(e) { return e.site; }).indexOf(parsed_result.host);	
+	article_site = parsed_result.host;	
+	sendMessage(article_site);	
 	
-	if (pos != -1)//pos would = -1 if the host name is not in the array of supported sites
-	{
-		article_site = parsed_result.host;				
-		sendMessage(article_site);	
-	}
-	else 
-	{
-		document.getElementById('search_box').value="Site isn't currently supported. Please manually enter your search.";
-	}
+	//document.getElementById('search_box').value="Site isn't currently supported. Please manually enter your search.";
+	
 	
 		
 });
